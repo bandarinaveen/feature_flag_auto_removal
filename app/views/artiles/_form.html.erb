@@ -1,0 +1,25 @@
+<%= form_with(model: artile) do |form| %>
+  <% if artile.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(artile.errors.count, "error") %> prohibited this artile from being saved:</h2>
+
+      <ul>
+        <% artile.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name, required: false %>
+    <br/>
+    <br/>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+    <br/>
+    <br/>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Artiles List (Flag: <%= @show_artilces_list ? "ON" : "OFF" %>)</h1>
+
+<h3>(Flag name: <%= @flag_name %> , Status: <%= @show_artilces_list ? "ON" : "OFF" %>)</h3>
+
+<div id="artiles">
+  <% @artiles.each do |artile| %>
+    <%= render artile %>
+    <p>
+      <%= link_to "Show this artile", artile %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New artile", new_artile_path, :class => "btn btn-info" %>
