@@ -5,11 +5,13 @@
 <br/>
 
 <div>
-  <h3> Flag status: <%= @show_artilce %> </h3>
+  <h3> Flag status: <%= @show_artilce_details %> </h3>
   <br/>
   <br/>
   <%= link_to "Edit this artile", edit_artile_path(@artile) %> |
   <%= link_to "Back to artiles", artiles_path %>
 
-  <%= button_to "Destroy this artile", @artile, method: :delete %>
+	<% if @show_delete_button %>
+		<%= button_to "Destroy this artile", @artile, method: :delete %>
+	<% end %>
 </div>

@@ -6,17 +6,23 @@ class ArtilesController < ApplicationController
   # GET /artiles or /artiles.json
   def index
     @flag_name = "pwm-show-articles-list"
-    @show_artilces_list = show_feature?("pwm-show-articles-list")
     if show_feature?("pwm-show-articles-list")
+      @show_artilces_list = true
       @artiles = Artile.all
     else
       @artiles = Artile.first(2)
+      @show_artilces_list = false
     end
   end
 
   # GET /artiles/1 or /artiles/1.json
   def show
-    @show_artilce = show_feature?("pwm-show-articles-list")
+    if !show_feature?("pwm-show-articles-list")
+        @show_delete_button = false
+    else
+        @show_delete_button = true
+    end
+    @show_artilce_details = show_feature?("pwm-show-articles-list")
   end
 
   # GET /artiles/new
@@ -45,6 +51,7 @@ class ArtilesController < ApplicationController
 
   # PATCH/PUT /artiles/1 or /artiles/1.json
   def update
+    @can_update_artilce = show_feature?("pwm-show-articles-list")
     respond_to do |format|
       if @artile.update(artile_params)
         format.html { redirect_to @artile, notice: "Artile was successfully updated." }
@@ -74,7 +81,6 @@ class ArtilesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def artile_params
-      # params.fetch(:artile, {:name, :description})
       params.require(:artile).permit(:name, :description)
     end
 end
