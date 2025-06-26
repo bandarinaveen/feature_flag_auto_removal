@@ -7,7 +7,11 @@ class ArtilesController < ApplicationController
   def index
     @flag_name = "pwm-show-articles-list"
     @show_artilces_list = show_feature?("pwm-show-articles-list")
-    @artiles = Artile.all
+    if show_feature?("pwm-show-articles-list")
+      @artiles = Artile.all
+    else
+      @artiles = Artile.first(2)
+    end
   end
 
   # GET /artiles/1 or /artiles/1.json
