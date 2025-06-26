@@ -12,6 +12,7 @@ class ArtilesController < ApplicationController
 
   # GET /artiles/1 or /artiles/1.json
   def show
+    @show_artilce = show_feature?("pwm-show-articles-list")
   end
 
   # GET /artiles/new
