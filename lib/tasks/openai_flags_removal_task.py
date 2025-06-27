@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import List, Dict
 
 # Configure your OpenAI API key
-openai.api_key = ENV['OPENAI_SECRET']
+openai.api_key = os.getenv("OPENAI_API_KEY")
 OPENAI_MODEL = "gpt-4"  # or "gpt-3.5-turbo"
 
 
